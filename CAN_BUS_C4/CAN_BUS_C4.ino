@@ -16,6 +16,8 @@ unsigned long timeSinceSourceChange = 0;
 bool shouldStopReverse = false;
 unsigned long timeSinceReverseDisengaged = 0;
 
+int reverse_interval = 200;
+
 bool mute = false;
 bool mute_pressed = false;
 bool next_pressed = false;
@@ -45,7 +47,7 @@ void loop()
     //    back to OpenAuto immediately (which takes some time) and it takes some time to go back
     //    to Camera again, which is annoying when parking.
     
-    if (shouldStopReverse && millis() - timeSinceReverseDisengaged > 5000) 
+    if (shouldStopReverse && millis() - timeSinceReverseDisengaged > reverse_interval) 
     {    
         Serial.println("REVERSE_DISENGAGED");
         
